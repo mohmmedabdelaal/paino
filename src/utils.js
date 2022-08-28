@@ -18,11 +18,16 @@ export class Beat {
  */
 export class Button {
   constructor(color, keyCode) {
+    this.element = document.getElementById(keyCode);
     this.keyCode = keyCode;
     this.color = color;
+    this.setButtonColorInHTML();
+    this.createTransitionEndListener();
   }
 
-  setButtonColorInHTML() {}
+  setButtonColorInHTML() {
+    this.element.style.borderColor = this.color;
+  }
 
   createTransitionEndListener() {}
 
