@@ -71,13 +71,15 @@ let beats = {
  * HINT: use the keyCode
  */
 const triggerBeat = ({ keyCode }) => {
-  if (keyCode in beats) {
-    beats[keyCode].button.select();
-    beats[keyCode].beat.play();
+  let code = keyCode;
+  if (code in beats) {
+    beats[code].button.select();
+    beats[code].beat.play();
   }
 };
 
 document.addEventListener('keydown', triggerBeat);
+
 /**
  * Keydown listener to fire triggerBeat function
  * HINT: Log the keyCode of the key

@@ -4,12 +4,12 @@
  * HINT: Create a play function to play the audio if called
  */
 export class Beat {
-  constructor(audioSrc) {
-    this.audioSrc = new Audio(audioSrc);
+  constructor(soundSrc) {
+    this.soundSrc = new Audio(soundSrc);
   }
   play() {
-    this.audioSrc.currentTime = 0;
-    this.audioSrc.play();
+    this.soundSrc.currentTime = 0;
+    this.soundSrc.play();
   }
 }
 
@@ -19,19 +19,26 @@ export class Beat {
 export class Button {
   constructor(color, keyCode) {
     this.element = document.getElementById(keyCode);
-    this.keyCode = keyCode;
     this.color = color;
-    this.setButtonColorInHTML();
-    this.createTransitionEndListener();
+    this.keyCode = keyCode;
+    this.createButtonColorHtml();
+    this.createButtonTransaction();
   }
 
-  setButtonColorInHTML() {
+  createButtonColorHtml() {
     this.element.style.borderColor = this.color;
   }
-
-  createTransitionEndListener() {}
-
-  select() {}
-
-  deselect() {}
+  createButtonTransaction() {
+    this.element.addEventListener('transitionend', () => {
+      this.deselect();
+    });
+  }
+  select() {
+    this.element.style.backgroundColor = this.color;
+    this.element.style.boxShadow = `0px 0px 18px 0px ${this.color}`;
+  }
+  deselect() {
+    this.element.style.backgroundColor = 'transparent';
+    this.element.style.boxShadow = 'none';
+  }
 }
