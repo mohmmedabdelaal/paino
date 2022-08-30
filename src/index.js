@@ -71,10 +71,9 @@ let beats = {
  * HINT: use the keyCode
  */
 const triggerBeat = ({ keyCode }) => {
-  let code = keyCode;
-  if (code in beats) {
-    beats[code].button.select();
-    beats[code].beat.play();
+  if (keyCode in beats) {
+    beats[keyCode].button.select();
+    beats[keyCode].beat.play();
   }
 };
 
